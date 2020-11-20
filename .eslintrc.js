@@ -11,6 +11,7 @@ module.exports = {
         'react/prop-types': 0,
         'react/no-array-index-key': 0,
         'react/destructuring-assignment': 0,
-        'no-console': 0
+        'no-console': 0,
+        'import/extensions': 0
     }
 }

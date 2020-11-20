@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 module.exports = function(env, argv) {
     const isEnvDevelopment = argv.mode === 'development' || !argv.mode
     const isEnvProduction = argv.mode === 'production'
@@ -34,13 +35,22 @@ module.exports = function(env, argv) {
             ]
         },
         devServer: {
-            contentBase: './dist'
+            contentBase: './dist',
+            hot: true
         },
         plugins: [
             new HtmlWebpackPlugin({
                 template: "public/index.html"
-            })
-        ]
+            }),
+            // new webpack.NamedModulesPlugin(),
+            new webpack.HotModuleReplacementPlugin()
+
+        ],
+        resolve: {
+            alias: {
+                '@': path.resolve('src')
+            }
+        }
     }
 
 };

@@ -5,6 +5,8 @@ import axios from 'axios';
 // Nav,Card,Row,Col,Button,ListGroupItem} from 'react-bootstrap';
 import 'lazysizes';
 import * as ReactBootstrap from 'react-bootstrap';
+import img1 from '@/assets/imgs/pic1.png';
+
 
 const { ListGroup } = ReactBootstrap;
 const { Spinner } = ReactBootstrap;
@@ -78,7 +80,7 @@ const RepoCard = (props) => (
   <Card border="primary" style={{ marginTop: '8px', marginBottom: '8px' }}>
     <Card.Header className="text-center bg-white font-weight-bold">{props.no}</Card.Header>
     <Card.Body className="bg-light">
-      <Card.Img src="../assets/imgs/pic1.png" data-src={props.img} className="lazyload" />
+      <Card.Img src={img1} data-src={props.img} className="lazyload" />
       <Card.Title className="text-center"><Card.Link href={props.url} className="text-danger" target="_blank">{props.title}</Card.Link></Card.Title>
       <ListGroup className="list-group-flush">
         <ListGroupItem className="bg-light">
@@ -204,7 +206,7 @@ export default class App extends React.Component {
                   ))}
                 </Row>
                 <div className="text-center">
-                  {error && (
+                  {error && error.response && (
                   <Alert variant="danger">
                     {error.response.status}
                     {' '}
@@ -229,7 +231,7 @@ export default class App extends React.Component {
                   </Button>
                 </div>
               </Content>
-              <Footer>
+              <Footer style={{display:'fixed',bottom:'0'}}>
                 <div className="text-center text-black jumbotron bg-light">
                   <p>版权所有 &copy; 韦仲茜</p>
                 </div>
