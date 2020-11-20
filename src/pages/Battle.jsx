@@ -22,8 +22,7 @@ class Battle extends React.Component {
       loadingTwo:false,
       one:"",//获取的数据
       two:"",
-      battle:false,//是否可以比较
-      winner:"vyyyy"//胜利者
+      battle:false,//是否可以比较 
     }
     this.oneVal=React.createRef()
     this.twoVal=React.createRef()
@@ -38,8 +37,7 @@ class Battle extends React.Component {
         alert("未找到项目")
         this.oneVal.current.value=""
         return
-      } 
-      // this.props.setOne(res.data.items[0])
+      }  
       const oneData=res.data.items[0]
       this.setState({getOne:true,loadingOne:false,one:oneData})
       console.log(oneData)
@@ -79,7 +77,7 @@ class Battle extends React.Component {
   }
 //比较项目
   battleResult=()=>{
-    const {one,two,winner,battle}=this.state
+    const {one,two,battle}=this.state
     // let win = this.state.two.name
    
     // if(one.stargazers_count>two.stargazers_count){
@@ -92,13 +90,13 @@ class Battle extends React.Component {
     //   this.setState({battle:true,winnner:""})
     // }
     // console.log("winner:",one.stargazers_count>two.stargazers_count)
-    // console.log("battle:",battle)
+    console.log("battle:",battle)
 
     this.props.history.push({
-      pathname:"/BattleResult",
+      pathname:"/BattleResult/",
       query:{
-        id1:"111",
-        id2:"222"
+        name1:one.name,
+        name2:two.name
       }
     })
     // this.props.history.push("/BattleResult",{da:win})
