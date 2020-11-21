@@ -15,35 +15,35 @@ import { hot } from 'react-hot-loader/root';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { route: 'Popular' };
+    // this.state = { route: 'Popular' };
   }
 
-  handleMenu(key) {
-    console.log('key', key);
-    this.setState({
-      route: key,
-    });
-  }
+  // handleMenu(key) {
+  //   console.log('key', key);
+  //   this.setState({
+  //     route: key,
+  //   });
+  // }
 
   render() {
-    const menuItems = [
-      'Popular',
-      'Battle',
-    ];
-    const { route } = this.state;
-    let page = null;
-    switch (route) {
-      case 'Battle':
-        page = <Battle Submit={()=>this.handleMenu("BattleResult")} />;
-        // Submit={()=>this.handleMenu().bind(this)} 
-        break;
-      case 'Popular':
-        page = <Popular />;
-        break;
-      default:
-        page = <Popular />;
-        break;
-    }
+    // const menuItems = [
+    //   'Popular',
+    //   'Battle',
+    // ];
+    // const { route } = this.state;
+    // let page = null;
+    // switch (route) {
+    //   case 'Battle':
+    //     page = <Battle/>;
+    //     // Submit={()=>this.handleMenu().bind(this)} 
+    //     break;
+    //   case 'Popular':
+    //     page = <Popular />;
+    //     break;
+    //   default:
+    //     page = <Popular />;
+    //     break;
+    // }
     return (
       <Container>
         {/* <Nav

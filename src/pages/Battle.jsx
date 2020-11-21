@@ -1,16 +1,11 @@
 import React from 'react';
-import axios from 'axios';
-import { HashRouter, Route, Link } from 'react-router-dom';
-import { createHashHistory } from 'history';
+import axios from 'axios'; 
 import {
-  Container, InputGroup, FormControl, Row, Col, Button,Spinner,Card, CardImg
+  Container, InputGroup, FormControl, Row, Col, Button,Spinner,Card 
 } from 'react-bootstrap';
 import img1 from '@/assets/imgs/pic2.png';
 import img2 from '@/assets/imgs/pic3.png';
-import img3 from '@/assets/imgs/pic4.png';
-import BattleResult from '@/pages/BattleResult.jsx';
- 
-const history=createHashHistory();
+import img3 from '@/assets/imgs/pic4.png'; 
 
 class Battle extends React.Component {
   constructor(props){
@@ -77,20 +72,8 @@ class Battle extends React.Component {
   }
 //比较项目
   battleResult=()=>{
-    const {one,two,battle}=this.state
-    // let win = this.state.two.name
-   
-    // if(one.stargazers_count>two.stargazers_count){
-    //   this.setState({
-    //     battle:true,
-    //     winner:one.name
-    //   })
-    //   win = one.name
-    // }else if(one.stargazers_count<two.stargazers_count){
-    //   this.setState({battle:true,winnner:""})
-    // }
-    // console.log("winner:",one.stargazers_count>two.stargazers_count)
-    console.log("battle:",battle)
+    const {one,two,battle}=this.state 
+    // console.log("battle:",battle)
 
     this.props.history.push({
       pathname:"/BattleResult/",
