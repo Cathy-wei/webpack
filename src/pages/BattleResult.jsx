@@ -64,7 +64,7 @@ class BattleResult extends React.Component {
                 <Row>
                     <Col>
                         <Card>
-                            <Card.Img src={imgUrl1} alt={oneName} style={{width:'200px',height:'200px',margin:'0 auto'}} />
+                            <Card.Img src={imgUrl1} alt={oneName} className='battleCardImg' />
                             <Card.Header>
                             {oneName}  {winner==oneName ?   <span style={{color:'#efc85dd9',fontWeight:'bold'}}>winner</span>:''}
                             </Card.Header> 
@@ -73,7 +73,7 @@ class BattleResult extends React.Component {
                     </Col>
                     <Col>
                         <Card>
-                            <Card.Img src={imgUrl2} alt={twoName} style={{width:'200px',height:'200px',margin:'0 auto'}} />
+                            <Card.Img src={imgUrl2} alt={twoName} className='battleCardImg' />
                             <Card.Header>
                             {twoName} {winner==twoName ?   <span style={{color:'#efc85dd9',fontWeight:'bold'}}>winner</span>:''} 
                             </Card.Header> 
@@ -88,7 +88,7 @@ class BattleResult extends React.Component {
                 <br/>
                 <Row>
                     <Col>
-                        <Button onClick={this.goBack}>返回</Button>
+                        <Button className='But' onClick={this.goBack}>返回</Button>
                     </Col>
                 </Row>
               

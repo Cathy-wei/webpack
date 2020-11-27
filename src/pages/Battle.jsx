@@ -86,8 +86,7 @@ class Battle extends React.Component {
   }
   
   render() {
-    const {getOne,getTwo,loadingOne,loadingTwo,one,two}=this.state;
-    // const {win}=this.props;
+    const {getOne,getTwo,loadingOne,loadingTwo,one,two}=this.state; 
     return (
       <Container className="text-center">
         <br />
@@ -99,15 +98,15 @@ class Battle extends React.Component {
         <Row>
           <Col>
             <p>Enter two Github users</p>
-            <img src={img1} style={{ boxShadow: '0 0 5px 3px #00000042' }} alt=" " />
+            <img src={img1} className='imgShadow' alt=" " />
           </Col>
           <Col>
             <p>Battle</p>
-            <img src={img2} style={{ boxShadow: '0 0 5px 3px #00000042' }} alt=" " />
+            <img src={img2} className='imgShadow' alt=" " />
           </Col>
           <Col>
             <p>See the winner</p>
-            <img src={img3} style={{ 'boxShadow': '0 0 5px 3px #00000042' }} alt=" " />
+            <img src={img3} className='imgShadow' alt=" " />
           </Col>
         </Row>
         <br />
@@ -124,27 +123,28 @@ class Battle extends React.Component {
                 </div>
                 : getOne ?
                   <Card>
-                    <Card.Img src={one.owner.avatar_url} alt={one.name} style={{width:'200px',height:'200px',margin:'0 auto'}} />
+                    <Card.Img src={one.owner.avatar_url} alt={one.name} className='battleCardImg' />
                     <Card.Header>
                       {one.name}
-                    <Button variant="light" onClick={this.rmOne} className="button-del">
-                    <i className="fa fa-times-circle" style={{ color: 'rgb(194, 57, 42)' }}></i>
+                    <Button variant="light" onClick={this.rmOne} className=" delButton  button-del">
+                    <i className="fa fa-times-circle " ></i>
                     </Button> 
                     </Card.Header>
                     
                 </Card> 
                 :
                 <InputGroup>
-                <FormControl
-                  ref={this.oneVal}
-                  placeholder="github username"
-                  aria-label="github username"
-                  aria-describedby="basic-addon2"
-                />
-                <InputGroup.Append>
-                  <Button variant="outline-secondary" onClick={this.getOne} >SUBMIT</Button>
-                </InputGroup.Append>
-              </InputGroup>
+                  <FormControl
+                    ref={this.oneVal}
+                    placeholder="github username"
+                    aria-label="github username"
+                    aria-describedby="basic-addon2"
+                    className='formInput'
+                  />
+                  <InputGroup.Append>
+                    <Button  className='But' onClick={this.getOne} >SUBMIT</Button>
+                  </InputGroup.Append>
+                </InputGroup>
             }
             
           </Col>
@@ -157,11 +157,11 @@ class Battle extends React.Component {
                 </div>
                 : getTwo ?
                 <Card>
-                    <Card.Img src={two.owner.avatar_url} alt={two.name} style={{width:'200px',height:'200px',margin:'0 auto'}} />
+                    <Card.Img src={two.owner.avatar_url} alt={two.name} className='battleCardImg' />
                     <Card.Header>
                       {two.name}
-                      <Button variant="light" onClick={this.rmTwo} className="button-del">
-                      <i className="fa fa-times-circle" style={{ color: 'rgb(194, 57, 42)' }}></i>
+                      <Button variant="light" onClick={this.rmTwo} className=" delButton button-del">
+                      <i className="fa fa-times-circle"></i>
                       </Button>
                     </Card.Header>
                 </Card> :
@@ -171,9 +171,10 @@ class Battle extends React.Component {
                   placeholder="github username"
                   aria-label="github username"
                   aria-describedby="basic-addon2"
+                  className='formInput'
                 />
                 <InputGroup.Append>
-                  <Button variant="outline-secondary" onClick={this.getTwo} >SUBMIT</Button>
+                  <Button  className='But' onClick={this.getTwo} >SUBMIT</Button>
                 </InputGroup.Append>
               </InputGroup>
             }
@@ -182,7 +183,7 @@ class Battle extends React.Component {
         <Row>
           <Col>
        
-                <Button variant="primary" onClick={this.battleResult} >
+                <Button  className='But' onClick={this.battleResult} >
                    Battle
                 </Button> 
              

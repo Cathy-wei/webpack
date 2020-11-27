@@ -7,20 +7,50 @@ module.exports = function(env, argv) {
     return {
         mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
         devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
-        entry: './src/index.jsx',
+        entry: {
+            index: './src/index.jsx',
+            // another: './src/another-module.jsx'
+
+        },
         output: {
-            filename: 'bundle.js',
+            // filename: '[name].bundle.js',
+            chunkFilename: '[name].bundle.js',
             path: path.resolve(__dirname, 'dist')
         },
+        // optimization: {
+        //     splitChunks: {
+        //         // include all types of chunks
+        //         chunks: 'all'
+        //     }
+        // },
         module: {
             rules: [{
                     test: /\.jsx$/,
                     exclude: /node_moduels/,
                     use: 'babel-loader'
-                }, {
-                    test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
                 },
+                {
+                    test: /\.css$/,
+                    include: [path.resolve(__dirname, 'src/styles'), /node_modules/],
+                    use: ['style-loader', 'css-loader', 'postcss-loader']
+                },
+                {
+                    test: /\.css$/,
+                    exclude: [path.resolve(__dirname, 'src/styles'), /node_modules/],
+                    use: ['style-loader', 'css-loader?modules', 'postcss-loader']
+                },
+                {
+                    test: /\.less$/,
+                    include: [path.resolve(__dirname, 'src/styles'), /node_modules/],
+                    use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+                },
+                {
+                    test: /\.less$/,
+                    exclude: [path.resolve(__dirname, 'src/styles'), /node_modules/],
+                    use: ['style-loader', 'css-loader?modules', 'less-loader', 'postcss-loader']
+                },
+
+
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/,
                     use: ["file-loader"]
@@ -40,8 +70,12 @@ module.exports = function(env, argv) {
         },
         plugins: [
             new HtmlWebpackPlugin({
+                // title: 'Code Splitting',
                 template: "public/index.html"
             }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: 'common'
+            // }),
             // new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin()
 

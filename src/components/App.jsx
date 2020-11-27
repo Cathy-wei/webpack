@@ -66,12 +66,12 @@ class App extends React.Component {
         <HashRouter>
         <br/>
         <ButtonGroup aria-label="Basic example">
-          <Button variant="secondary">
+          <Button className='But'>
              <Link style={{ textDecoration:'none',color:'white'}}  to="/Popular/">
                 Popular
               </Link> 
           </Button>
-          <Button variant="secondary">
+          <Button  className='But'>
             <Link  style={{ textDecoration:'none',color:'white'}} to="/Battle/">
                 Battle
               </Link>
