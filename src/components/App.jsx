@@ -1,13 +1,13 @@
-import React from 'react';
+import React,{ Suspense, lazy } from 'react';
 import { Container, Nav ,ButtonGroup,Button} from 'react-bootstrap';
 import { HashRouter, Route, Link, Switch } from 'react-router-dom';
 
-import Battle from '@/pages/Battle.jsx';
+// import Battle from '@/pages/Battle.jsx';
 import Popular from '@/pages/Popular.jsx';
 import BattleResult from '@/pages/BattleResult.jsx';
 import { hot } from 'react-hot-loader/root';
 // import { setConfig , hot} from 'react-hot-loader/root';
-
+const Battle =lazy(()=>import('@/pages/Battle.jsx'))
 // setConfig({
 //   showReactDomPatchNotification:false
 // });
@@ -76,18 +76,16 @@ class App extends React.Component {
                 Battle
               </Link>
           </Button>
-          {/* <Button variant="secondary">
-            <Link  style={{ textDecoration:'none',color:'white'}} to="/BattleResult/">
-               BattleResult
-              </Link> 
-          </Button>  */}
         </ButtonGroup> 
+        <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/" component={Popular}></Route>
             <Route exact path="/Popular" component={Popular}></Route>
             <Route path="/Battle" component={Battle}></Route>
             <Route path="/BattleResult" component={BattleResult}></Route>
           </Switch>
+        </Suspense>
+          
               
         </HashRouter> 
       </Container>
