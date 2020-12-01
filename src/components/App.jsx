@@ -6,11 +6,8 @@ import { HashRouter, Route, Link, Switch } from 'react-router-dom';
 import Popular from '@/pages/Popular.jsx';
 import BattleResult from '@/pages/BattleResult.jsx';
 import { hot } from 'react-hot-loader/root';
-// import { setConfig , hot} from 'react-hot-loader/root';
 const Battle =lazy(()=>import('@/pages/Battle.jsx'))
-// setConfig({
-//   showReactDomPatchNotification:false
-// });
+
 
 class App extends React.Component {
   constructor(props) {
@@ -63,6 +60,9 @@ class App extends React.Component {
         <div>
           {page}
         </div> */}
+
+
+
         <HashRouter>
         <br/>
         <ButtonGroup aria-label="Basic example">

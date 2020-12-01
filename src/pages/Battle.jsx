@@ -18,27 +18,37 @@ class Battle extends React.Component {
       one:"",//获取的数据
       two:"",
       battle:false,//是否可以比较 
+      input1:'',
+      input2:''
     }
-    this.oneVal=React.createRef()
-    this.twoVal=React.createRef()
+    // this.oneVal=React.createRef()
+    // this.twoVal=React.createRef()
+    this.oneSubmit=React.createRef()
+    this.twoSubmit=React.createRef()
+
   }
   getOne=async()=>{//获取第一个数据
-    const val1=this.oneVal.current.value
-    const url= `https://api.github.com/search/repositories?q=${val1} in:name&sort=stars&order=desc&type=Repositories&per_page=1`
-    this.setState({loadingOne:true})
-    try{  
-      const res= await axios.get(url)
-      if(res.data.items.length==0){
-        alert("未找到项目")
-        this.oneVal.current.value=""
-        return
-      }  
-      const oneData=res.data.items[0]
-      this.setState({getOne:true,loadingOne:false,one:oneData})
-      console.log(oneData)
-    }catch(e){
+    // const val1=this.oneVal.current.value
+    const val1=this.state.input1
+    console.log(val1);
+    if(val1!==''){
+      const url= `https://api.github.com/search/repositories?q=${val1} in:name&sort=stars&order=desc&type=Repositories&per_page=1`
+      this.setState({loadingOne:true})
+      try{  
+        const res= await axios.get(url)
+        if(res.data.items.length==0){
+          alert("未找到项目")
+          this.oneVal.current.value=""
+          return
+        }  
+        const oneData=res.data.items[0]
+        this.setState({getOne:true,loadingOne:false,one:oneData})
+        console.log(oneData)
+      }catch(e){
 
+      }
     }
+    
     this.setState({loadingOne:false})
   }
 
@@ -46,47 +56,91 @@ class Battle extends React.Component {
     this.setState({getOne:false,one:''})
   }
 
+  inputChange1=(e)=>{
+    // console.log(e);
+    let val=e.target.value
+    if (val.match(/^[ ]*$/)) {
+      this.oneSubmit.current.disabled=true
+      return
+    }
+    this.oneSubmit.current.disabled=false
+
+    this.setState({input1:val})
+  }
+  enter1=(e)=>{
+    if (e.key == "Enter") {
+        this.getOne();
+    }
+  }
+
   getTwo=async()=>{
-    const val2=this.twoVal.current.value
-    const url= `https://api.github.com/search/repositories?q=${val2} in:name&sort=stars&order=desc&type=Repositories&per_page=1`
-    this.setState({loadingTwo:true})
-    try{  
-      const res= await axios.get(url)
-      if(res.data.items.length==0){
-        alert("未找到项目")
-        this.twoVal.current.value=""
-        return
-      } 
-      // this.props.setOne(res.data.items[0])
-      const twoData=res.data.items[0]
-      this.setState({getTwo:true,loadingTwo:false,two:twoData})
-      console.log(twoData)
-    }catch(e){
+    // const val2=this.twoVal.current.value
+    const val2=this.state.input2
+    if (val2!=='') {
+      const url= `https://api.github.com/search/repositories?q=${val2} in:name&sort=stars&order=desc&type=Repositories&per_page=1`
+      this.setState({loadingTwo:true})
+      try{  
+        const res= await axios.get(url)
+        if(res.data.items.length==0){
+          alert("未找到项目")
+          this.twoVal.current.value=""
+          return
+        } 
+        // this.props.setOne(res.data.items[0])
+        const twoData=res.data.items[0]
+        this.setState({getTwo:true,loadingTwo:false,two:twoData})
+        console.log(twoData)
+      }catch(e){
 
     }
-    this.setState({loadingTwo:false})
+    this.setState({loadingTwo:false})}
+    
   }
 
   rmTwo=()=>{
     this.setState({getTwo:false,two:''})
   }
+
+  inputChange2=(e)=>{
+    let val=e.target.value
+    if (val.match(/^[ ]*$/)) {
+      this.twoSubmit.current.disabled=true
+      return
+  }
+  this.twoSubmit.current.disabled=false
+  this.setState({input2:val})
+  }
+
+  enter2=(e)=>{
+    if (e.key == "Enter") {
+        this.getTwo();
+    }
+  }
+
 //比较项目
   battleResult=()=>{
     const {one,two,battle}=this.state 
-    // console.log("battle:",battle)
-
-    this.props.history.push({
-      pathname:"/BattleResult/",
-      query:{
-        name1:one.name,
-        name2:two.name
-      }
-    })
+    console.log("battle:",battle)
+    // if(one&&two!==''){
+    //   battle=true
+    // }
+    // if(battle){
+      this.props.history.push({
+        pathname:"/BattleResult/",
+        query:{
+          name1:one.name,
+          name2:two.name
+        }
+      })
+    // }else{
+    //   alert('不可比较')
+    // }
+    
     // this.props.history.push("/BattleResult",{da:win})
   }
   
   render() {
-    const {getOne,getTwo,loadingOne,loadingTwo,one,two}=this.state; 
+    const {getOne,getTwo,loadingOne,loadingTwo,one,two,input1,input2}=this.state;
     return (
       <Container className="text-center">
         <br />
@@ -135,14 +189,24 @@ class Battle extends React.Component {
                 :
                 <InputGroup>
                   <FormControl
-                    ref={this.oneVal}
+                    // ref={this.oneVal}
                     placeholder="github username"
                     aria-label="github username"
                     aria-describedby="basic-addon2"
-                    className='formInput'
+                    className='formInput' 
+                    onChange={(e)=>{this.inputChange1(e)}}
+                    onKeyDown={(e)=>{this.enter1(e)}}
                   />
-                  <InputGroup.Append>
-                    <Button  className='But' onClick={this.getOne} >SUBMIT</Button>
+                  <InputGroup.Append >
+                  {
+                    // (this.oneVal&&this.oneVal.current&&this.oneVal.current.value&&(this.oneVal.current.value!==''))?
+                    input1!==''?
+                     <Button  className='But' onClick={this.getOne}  ref={this.oneSubmit}>SUBMIT</Button>
+                    :
+                    <Button  className='But' onClick={this.getOne} disabled  ref={this.oneSubmit}>SUBMIT</Button>
+
+                  }
+                    
                   </InputGroup.Append>
                 </InputGroup>
             }
@@ -167,14 +231,22 @@ class Battle extends React.Component {
                 </Card> :
                 <InputGroup>
                 <FormControl
-                  ref={this.twoVal}
+                  // ref={this.twoVal}
                   placeholder="github username"
                   aria-label="github username"
                   aria-describedby="basic-addon2"
                   className='formInput'
+                  onChange={(e)=>{this.inputChange2(e)}}
+                  onKeyDown={(e)=>{this.enter2(e)}}
                 />
                 <InputGroup.Append>
-                  <Button  className='But' onClick={this.getTwo} >SUBMIT</Button>
+                  {
+                    input2!==''?
+                    <Button  className='But' onClick={this.getTwo}  ref={this.twoSubmit}>SUBMIT</Button>
+                    :
+                  <Button  className='But' onClick={this.getTwo} disabled ref={this.twoSubmit}>SUBMIT</Button>
+                  }
+                  
                 </InputGroup.Append>
               </InputGroup>
             }

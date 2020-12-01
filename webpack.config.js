@@ -1,9 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
+// const Popular = require('./src/pages/Popular.jsx')
 module.exports = function(env, argv) {
     const isEnvDevelopment = argv.mode === 'development' || !argv.mode
     const isEnvProduction = argv.mode === 'production'
+
     return {
         mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
         devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
@@ -12,6 +14,7 @@ module.exports = function(env, argv) {
             // another: './src/another-module.jsx'
 
         },
+        // routes: routes,
         output: {
             // filename: '[name].bundle.js',
             chunkFilename: '[name].bundle.js',
@@ -73,11 +76,9 @@ module.exports = function(env, argv) {
                 // title: 'Code Splitting',
                 template: "public/index.html"
             }),
-            // new webpack.optimize.CommonsChunkPlugin({
-            //     name: 'common'
-            // }),
+
             // new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin()
+            new webpack.HotModuleReplacementPlugin(),
 
         ],
         resolve: {
