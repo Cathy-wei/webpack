@@ -1,0 +1,69 @@
+@red:#d82d2dc4;
+@shadow: #00000042;
+@purple1: rgba(182,137,176,1);
+@purple2:rgba(213,164,207,1);
+@purple3:rgba(249,188,221,1);
+@purpleShadow:#ffc9e6c7;
+.delButton{
+    color: @red;
+}
+
+.text_center {
+    text-align: center;
+    color: @red;
+}
+
+.imgShadow {
+    box-shadow: 0 0 5px 3px @shadow;
+}
+
+.battleCardImg {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.popularContent {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.link{
+    color:@purple1;
+}
+.link:visited{
+    color:@purple2;
+}
+.link:hover{
+    color:@purple3;
+}
+.link:active{
+    color: @purple1;
+}
+.But{
+    background-color: @purple2;
+    border: @purple1 solid ;
+}
+.But:disabled{
+    background-color: @purple3;
+    border: @purple3 solid ;
+}
+.But:not(:disabled):hover{
+    background-color: @purple1;
+    border: @purple1 solid ;
+}
+.But:not(:disabled):active {
+    background-color: @purple3 !important;
+    border: @purple1 solid 2px !important;
+}
+ 
+.But:not(:disabled):focus{
+    background-color: @purple3 !important;
+    border: @purple1 solid 2px !important;
+    box-shadow: @purple3 0 0 0 0.2rem !important;
+}
+
+.formInput:focus{
+    border-color:@purple3 ;
+    box-shadow: 0 0 0 0.2rem @purpleShadow !important;
+}
