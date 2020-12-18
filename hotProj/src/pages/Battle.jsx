@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios'; 
+// import { HashRouter as Router, Link } from 'react-router-dom';
+
 import {
   Container, InputGroup, FormControl, Row, Col, Button,Spinner,Card 
 } from 'react-bootstrap';
@@ -42,7 +44,7 @@ class Battle extends React.Component {
           return
         }  
         const oneData=res.data.items[0]
-        this.setState({getOne:true,loadingOne:false,one:oneData})
+        this.setState({getOne:true,loadingOne:false,one:oneData,battle:true})
         console.log(oneData)
       }catch(e){
 
@@ -88,7 +90,7 @@ class Battle extends React.Component {
         } 
         // this.props.setOne(res.data.items[0])
         const twoData=res.data.items[0]
-        this.setState({getTwo:true,loadingTwo:false,two:twoData})
+        this.setState({getTwo:true,loadingTwo:false,two:twoData,battle:true})
         console.log(twoData)
       }catch(e){
 
@@ -119,12 +121,14 @@ class Battle extends React.Component {
 
 //比较项目
   battleResult=()=>{
-    const {one,two,battle}=this.state 
+    const {getOne,getTwo, one,two,battle}=this.state 
     console.log("battle:",battle)
-    // if(one&&two!==''){
-    //   battle=true
-    // }
-    // if(battle){
+    // if(one=='' || two=='' || (one&&two)==''){
+    if(!getOne||!getTwo){
+      // battle=true
+      // this.setState({battle:true})
+      alert('其中一项不能为空')
+    }else if(battle){
       this.props.history.push({
         pathname:"/BattleResult/",
         query:{
@@ -132,9 +136,7 @@ class Battle extends React.Component {
           name2:two.name
         }
       })
-    // }else{
-    //   alert('不可比较')
-    // }
+    }
     
     // this.props.history.push("/BattleResult",{da:win})
   }
@@ -258,7 +260,15 @@ class Battle extends React.Component {
                 <Button  className='But' onClick={this.battleResult} >
                    Battle
                 </Button> 
-             
+         {/* <Router>
+          {
+            this.state.getOne && this.state.getTwo ? 
+              (<Link to={{pathname:this.state.battle?`/BattleResult/${this.state.one.name}&${this.state.two.name}`
+              :`/BattleResult`}}>
+                <Button className='But'>battle</Button>
+              </Link>) : null
+          }
+        </Router> */}
           </Col>
         </Row>
         <Row>

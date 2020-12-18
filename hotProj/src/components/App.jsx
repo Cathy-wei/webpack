@@ -82,7 +82,9 @@ class App extends React.Component {
             <Route exact path="/" component={Popular}></Route>
             <Route exact path="/Popular" component={Popular}></Route>
             <Route path="/Battle" component={Battle}></Route>
+            {/* <Route path="/BattleResult/:query" component={BattleResult}></Route> */}
             <Route path="/BattleResult" component={BattleResult}></Route>
+
           </Switch>
         </Suspense>
           

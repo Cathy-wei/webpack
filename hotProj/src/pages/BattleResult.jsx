@@ -12,6 +12,7 @@ class BattleResult extends React.Component {
         this.state={
             oneName:this.props.location.query.name1,
             twoName:this.props.location.query.name2,
+            // twoName:this.props,
             imgUrl1:'',
             imgUrl2:'',
             winner:'平手', 
@@ -23,7 +24,7 @@ class BattleResult extends React.Component {
     }
     componentDidMount() {
             this.battle();
-             
+            //  console.log(this.twoName);
         } 
     battle=async()=>{//获取第一个数据
         const {oneName,twoName}=this.state; 
