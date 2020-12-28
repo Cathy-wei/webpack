@@ -1,4 +1,4 @@
-export default (state = [], action) => {
+ const cart= (state = [], action) => {
     // console.log(state);
   
     switch (action.type) {
@@ -15,9 +15,13 @@ export default (state = [], action) => {
           return [...state, action.payload];
         }
       case "CHECKOUT":
-        return [];
+        let totle=0 ;
+        state.map((item)=>totle+=item.products.price * item.quantity)
+        alert("totle:"+totle)
+        return state;
       default:
         return state;
     }
   };
+  export default cart
   

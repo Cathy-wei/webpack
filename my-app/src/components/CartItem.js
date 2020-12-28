@@ -3,7 +3,7 @@ import {Row,Col, Button,Image,ButtonGroup} from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 
 
-export default ({products,size,quantity})=>(
+const CartItem =  ({products,size,quantity})=>(
     <Row className='cart_item' noGutters >
         <Col xs={2} className=" ">
         <Image fluid src={`${process.env.PUBLIC_URL}/products/${products.sku}_2.jpg`}   />
@@ -31,3 +31,5 @@ export default ({products,size,quantity})=>(
         </Col>
     </Row>
 )
+
+export default CartItem

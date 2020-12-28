@@ -1,7 +1,7 @@
-export default (state = [], action) => {
+const products= (state = [], action) => {
     switch (action.type) {
       case "GET_PRODUCTS":
-          console.log('product',state);
+          // console.log('product',state);
         return action.payload;
     //   case "ADD_CART":
     //     return state.map((item) => {
@@ -19,4 +19,4 @@ export default (state = [], action) => {
         return state;
     }
   };
-  
+  export default products

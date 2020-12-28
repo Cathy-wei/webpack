@@ -1,6 +1,6 @@
 import React from 'react'
 import {Form} from 'react-bootstrap'
-export  default ({name}) => (
+const Sort =({name}) => (
     <div>
         <Form.Control as="select" size="lg">
             <option>Select</option>
@@ -9,3 +9,5 @@ export  default ({name}) => (
         </Form.Control>
     </div>
 ) 
+
+export  default Sort
