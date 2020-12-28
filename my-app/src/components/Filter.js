@@ -27,6 +27,11 @@ import PropTypes from 'prop-types';
 const Filter= ({sizes,selected,onChange})=>(
     <div>
         <h5>Sizes:</h5>
+        {/* <ToggleButtonGroup type="checkbox"  className="mb-2">
+    <ToggleButton value={1}>Checkbox 1 (pre-checked)</ToggleButton>
+    <ToggleButton value={2}>Checkbox 2</ToggleButton>
+    <ToggleButton value={3}>Checkbox 3 (pre-checked)</ToggleButton>
+  </ToggleButtonGroup> */}
         <Form>
             {sizes.map((item,key) =>(
             <Form.Check type='checkbox' key={key} label={item}
