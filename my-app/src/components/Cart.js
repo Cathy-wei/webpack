@@ -10,11 +10,11 @@ const Cart = ({cart,dispatch})=>{
     .toFixed(2); 
     const cartNum =cart.reduce((cartNum,item)=>cartNum+item.quantity,0) ;
     return(
-    <div className='cart' style={{right:opened ? '-400px':'0px'}}>
+    <div className='cart' style={{right:opened ? '0px':'-400px'}}>
         <Button className='closer'  
         onClick={()=>setOpened(!opened)}>
             {
-                !opened ? <Fa name='close'/>:
+                opened ? <Fa name='close'/>:
                 <span>
                     <Fa name="shopping-cart"/>
                     <Badge pill variant="warning" className="num_badge1">{cartNum}</Badge>

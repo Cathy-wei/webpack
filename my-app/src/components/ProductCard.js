@@ -1,6 +1,6 @@
-import {React,useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {Badge, Button,DropdownButton,ButtonGroup,Card,Image, Dropdown} from 'react-bootstrap'
+import {Badge,DropdownButton,ButtonGroup,Card,Image, Dropdown} from 'react-bootstrap'
 
 const ProductCard =({item,dispatch}) => (
     

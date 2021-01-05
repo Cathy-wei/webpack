@@ -1,9 +1,10 @@
 import React from 'react'
 import {Row,Col, Button,Image,ButtonGroup} from 'react-bootstrap'
 import Fa from 'react-fontawesome'
+import { connect } from 'react-redux';
 
 
-const CartItem =  ({products,size,quantity})=>(
+const CartItem =  ({products,size,quantity,dispatch})=>(
     <Row className='cart_item' noGutters >
         <Col xs={2} className=" ">
         <Image fluid src={`${process.env.PUBLIC_URL}/products/${products.sku}_2.jpg`}   />
@@ -15,7 +16,13 @@ const CartItem =  ({products,size,quantity})=>(
         </Col>
         <Col xs={2} className="d-flex flex-column align-items-end justify-content-between">
             <div>
-                <Button size='sm' variant="link" className="text-danger" >
+                <Button size='sm' variant="link" 
+                    className="text-danger"
+                    onClick={()=>dispatch({
+                        type:'REMOVE_PRODUCT',
+                        id:products.id
+                    })}
+                >
                   <Fa name="close"   /> 
                 </Button>
             </div>
@@ -32,4 +39,4 @@ const CartItem =  ({products,size,quantity})=>(
     </Row>
 )
 
-export default CartItem
+export default connect()(CartItem)
