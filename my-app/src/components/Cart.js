@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Badge, Button,Container,Row,Col } from 'react-bootstrap'
 import Fa from 'react-fontawesome'
 import { connect } from 'react-redux';
 import CartItem from './CartItem';
-
+// import cart from "../actions/cart"
 const Cart = ({cart,dispatch})=>{
+    // useEffect(()=>{
+    // //   let cart=JSON.parse ( window.localStorage.getItem("cart"))
+    // //   console.log("v",cart.length);
+    //   dispatch(cart())
+    // //   return cart
+    // })
     const [opened,setOpened]=useState(false);
-    const total = cart.reduce((total, item) => total + item.products.price * item.quantity, 0)
-    .toFixed(2); 
-    const cartNum =cart.reduce((cartNum,item)=>cartNum+item.quantity,0) ;
+    console.log("c",cart.length);
+    const total = cart?cart.reduce((total, item) => total + item.products.price * item.quantity, 0)
+    .toFixed(2):0; 
+    const cartNum =cart?cart.reduce((cartNum,item)=>cartNum+item.quantity,0):0 ;
+    
+    // console.log("s",window.localStorage.getItem("state"));
+    
     return(
     <div className='cart' style={{right:opened ? '0px':'-400px'}}>
         <Button className='closer'  
@@ -33,7 +43,7 @@ const Cart = ({cart,dispatch})=>{
             <div className="cart_Items">
                  {cart.length===0 ?
            <div className="text-center">The cart is empty. </div> :
-           cart.map((item)=><CartItem key={item.products_id} {...item} />)}
+           cart?.map((item)=><CartItem key={item.products_id} {...item} />)}
             </div>
           
              
@@ -61,7 +71,7 @@ const Cart = ({cart,dispatch})=>{
     </div>
 )}
 const mapStateToProps =(state)=>({
-    cart:state.cart
+    cart:state.cart 
 })
 
 export default connect(mapStateToProps)(Cart)

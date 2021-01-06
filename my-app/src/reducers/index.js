@@ -6,7 +6,6 @@ import filter from "./filter";
 export default combineReducers({
   filter ,
   products:products,
-  // cartItem:cart
   cart:cart,
   
 });

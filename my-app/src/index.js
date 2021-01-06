@@ -8,15 +8,27 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css'
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals'; 
+import Root from "./Root";
 
-const store =createStore(rootReduers,applyMiddleware(promiseMiddleWare));
+// const initialState =
+// JSON.parse(window.localStorage.getItem('state')) || initialState;
+const store =createStore(rootReduers ,applyMiddleware(promiseMiddleWare));
+// store.subscribe(() => {
+//     const state = store.getState();
+//     const persist = {
+//       cart: state.cart ,
+//       products:state.products.products
+//     }; 
+//     window.localStorage.setItem('state', JSON.stringify(persist));
+//   });
 ReactDOM.render( 
-    <React.StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </React.StrictMode>,
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+        // <Root>
+        //     <App />
+        // </Root> ,
     document.getElementById('root')
 );
 

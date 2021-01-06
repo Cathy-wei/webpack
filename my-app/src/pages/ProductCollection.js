@@ -10,37 +10,27 @@ import getProducts from '../actions';
 
 
  
-const ProductCollection =({dispatch,products})=>{
+const ProductCollection =({dispatch,products,selectProducts})=>{
     useEffect( () => { 
         dispatch(getProducts())
         console.log("kk",products);
-    },[]);//dom更新后执行
-    // useEffect( () => { 
-    //     console.log("kk",products);
-
-    // }) 
-    
-    
-
-
+    },[]);
     return (
         <Container>
             <Row>
                 <Col sm={4} md={2}>
-                    {/* <Filter sizes={sizes} selected={selected}
-                       onChange={()=>handleFilter()}  
-                    /> */}
+                 
                     <Filter products={products} />
                 </Col>
                 <Col sm={8} md={10}>
                     <Row className='mb-4'>
                         <Col>
-                        {products?.length} Product(s) found.
+                        {selectProducts.length?selectProducts.length:products.length} Product(s) found.
                         </Col>       
-                        <Col><Sort products={products}  /></Col>
+                        <Col><Sort products={selectProducts.length?selectProducts:products}  /></Col>
                     </Row>
                     <Row>
-                        { products?.length&&products.map((item) =>(
+                        { (selectProducts.length?selectProducts:products)?.map((item) =>(
                          <Col xs={12} sm={6} md={4} className='mb-4' 
                             key={item.id}>
                                 <ProductCard item={item}  />
@@ -53,9 +43,11 @@ const ProductCollection =({dispatch,products})=>{
     )
 }
  
-const mapStateToProps=(state)=>({
-    products:state.products.products, 
-    // sort:state.sort.type
-})
+const mapStateToProps=(state)=>{
+    // console.log(state);
+    return({
+    products:state.products.products||[],
+    selectProducts: state.filter.products
+})}
        
 export default connect(mapStateToProps)(ProductCollection)
