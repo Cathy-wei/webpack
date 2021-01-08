@@ -12,19 +12,18 @@ const Filter= ({dispatch,selected,products})=>{
         <div>
             <h5>Sizes:</h5>
           
-            <Form>
+            <div>
                 {sizes.map((item,key) =>(
-                <Form.Check type='checkbox' key={key} label={item}
-                checked={selected?.includes(item)} 
-              
-                onChange={()=>
-                   
-                  dispatch( filter(selected,products,item))
-                }
-                ></Form.Check>
-            )) 
-            }
-            </Form>
+                <label>
+                    <input  type='checkbox'  key={key} 
+                            checked={selected?.includes(item)}  
+                            onChange={()=> 
+                            dispatch( filter(selected,products,item))
+                            } /> 
+                    <span className="checkmark">{item}</span>
+                </label>
+                ))}
+            </div>
             
         </div>
 

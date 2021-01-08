@@ -25,6 +25,7 @@ const ProductCard =({item,dispatch}) => (
         >
            {item.availableSizes.map((size,key)=>(
                <Dropdown.Item 
+                    className="but_item"
                     key={key}
                     onClick={()=>dispatch({
                         type:"ADD_CART",

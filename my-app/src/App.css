@@ -1,13 +1,81 @@
 .contain{
   margin: 70px;
 }
-.filter_box{
+/* .filter_box{
   width: 200px;
  background-color: rgb(226, 223, 223);
 }
 .check_box{
   margin: 20px;
+} */
+label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 35px;
+  height: 35px;
+  font-size: 0.8em;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  line-height: 35px;
+  text-align: center;
 }
+  /* On mouse-over, add a grey background color */
+  label:hover input ~ .checkmark {
+    border: 2px solid #1b1a20;
+  }
+ 
+  label input:checked ~ .checkmark {
+    background-color: #1b1a20;
+    color: #ececec;
+  }
+ 
+  label input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  } 
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    font-size: 0.8em;
+    border-radius: 50%;
+    line-height: 35px;
+    text-align: center;
+    color: #1b1a20;
+    background-color: #ececec;
+
+    border: 1px solid transparent;
+  }
+
+/*sort*/
+  select {
+    float: right;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #ececec;
+    border-radius: 2px;
+    margin-left: 10px;
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+  }
+    select:hover {
+      border: 1px solid #5b5a5e;
+    }
 
 /* productCard */
 .badges{
@@ -16,7 +84,7 @@
   right:0px;
   border-radius:0;
   padding:6px;
-  /* background: black; */
+  background: black;
 }
 .but{
   border-radius: 0  !important;
@@ -32,7 +100,9 @@
 }
 .card_title{
   margin: 10px auto;
+  /* width: 250px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; */
 }
+ 
 
 /* cart */
 .cart{
@@ -103,7 +173,15 @@
 }
 .cart__content1::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: black;
+  /* background-color: black; */
+  -webkit-transition-property: background-color;
+    -webkit-transition-duration: 2s;
+    -webkit-transition-timing-function: ease;
+
+}
+.cart__content1:hover::-webkit-scrollbar-thumb {
+  border-radius: 4px; 
+  background-color:#ffd900;
 }
 
 
@@ -115,3 +193,5 @@ overflow: auto;
 .cart_Items{
   height: 100%;
 }
+
+

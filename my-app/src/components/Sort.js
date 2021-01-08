@@ -11,7 +11,7 @@ const Sort =({dispatch,products}) => {
     // const [sort,setSort]=useState('')
     return(
 <div>
-    <Form.Control as="select" size="sm"
+    <select size="sm"
         onChange={(e)=>{
             // console.log("e",e.target.value);
             // console.log("p",products); 
@@ -21,7 +21,7 @@ const Sort =({dispatch,products}) => {
         {sortBy.map((item,key)=>
             <option key={key} value={item.value}>{item.label}</option>
         )}
-    </Form.Control>
+    </select>
     
 </div>
 ) }
