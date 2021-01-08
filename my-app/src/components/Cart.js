@@ -12,7 +12,7 @@ const Cart = ({cart,dispatch})=>{
     // //   return cart
     // })
     const [opened,setOpened]=useState(false);
-    console.log("c",cart.length);
+    console.log("c",cart);
     const total = cart?cart.reduce((total, item) => total + item.products.price * item.quantity, 0)
     .toFixed(2):0; 
     const cartNum =cart?cart.reduce((cartNum,item)=>cartNum+item.quantity,0):0 ;

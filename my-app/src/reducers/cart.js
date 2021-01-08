@@ -62,7 +62,10 @@
         alert("totle:"+totle)
         return state;
       default:
-        return state;
+        const cart=JSON.parse(window.localStorage.getItem('state'))?.cart
+        // console.log("c1",cart.length);
+        
+        return [...state || cart];
     }
 
 

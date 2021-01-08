@@ -11,24 +11,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals'; 
 import Root from "./Root";
 
-// const initialState =
-// JSON.parse(window.localStorage.getItem('state')) || initialState;
-const store =createStore(rootReduers ,applyMiddleware(promiseMiddleWare));
-// store.subscribe(() => {
-//     const state = store.getState();
-//     const persist = {
-//       cart: state.cart ,
-//       products:state.products.products
-//     }; 
-//     window.localStorage.setItem('state', JSON.stringify(persist));
-//   });
+ 
+// const store =createStore(rootReduers ,applyMiddleware(promiseMiddleWare));
+ 
 ReactDOM.render( 
-    <Provider store={store}>
-        <App/>
-    </Provider>,
-        // <Root>
-        //     <App />
-        // </Root> ,
+    // <Provider store={store}>
+    //     <App/>
+    // </Provider>,
+        <Root>
+            <App />
+        </Root> ,
     document.getElementById('root')
 );
 

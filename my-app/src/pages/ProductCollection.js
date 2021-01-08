@@ -11,8 +11,8 @@ import getProducts from '../actions';
 
  
 const ProductCollection =({dispatch,products,selectProducts})=>{
-    useEffect( () => { 
-        dispatch(getProducts())
+    useEffect( async () => { 
+       await dispatch(getProducts())
         console.log("kk",products);
     },[]);
     return (
